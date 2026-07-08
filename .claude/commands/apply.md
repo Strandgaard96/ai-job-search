@@ -59,13 +59,16 @@ Read only the reference files you do not yet have:
 - `.claude/skills/job-application-assistant/05-cv-templates.md`
 - `.claude/skills/job-application-assistant/06-cover-letter-templates.md`
 
-Also read the most recent existing CV and cover letter files for concrete structural reference (one of each is enough):
-- Read any existing `cv/main_*.tex` file as a LaTeX template reference
+Also read reference material for concrete structural reference:
+- Read `cv/cv.yaml` (the master CV data) — unless the user explicitly asked for the LaTeX
+  template, in which case read an existing `cv/main_*.tex` file instead
 - Read any existing `cover_letters/cover_*.tex` or `cover_letters/Cover_*.tex` file as a template reference
 
-### CV (`cv/main_<company>.tex`)
+### CV (`cv/overrides/<company>.yaml`, default — or `cv/main_<company>.tex` if LaTeX was requested)
 - Always in **English**
-- Follow the moderncv/banking format from `05-cv-templates.md`
+- Default: write `cv/overrides/<company>.yaml` following the RenderCV guidance in
+  `05-cv-templates.md`. Only if the user explicitly asked for LaTeX: follow the moderncv/banking
+  format instead
 - Tailor the profile statement and experience bullets to the specific role
 - Reframe skills and achievements to match job requirements
 - Keep to 2 pages
@@ -177,17 +180,20 @@ After all edits are applied, the two files on disk are the final drafts.
 
 ## Step 5: DRAFTER - Compile & Inspect PDFs (MANDATORY)
 
-**Never skip this step.** The `.tex` files looking fine is not sufficient — LaTeX page-break decisions are unpredictable and commonly produce broken layouts (orphaned job titles separated from their bullets, cover letters spilling to 2 pages, bullet fonts not matching body text). Compile both documents and visually verify the PDFs before presenting.
+**Never skip this step.** A source file looking fine is not sufficient — page-break decisions are
+unpredictable and commonly produce broken layouts (orphaned job titles separated from their
+bullets, cover letters spilling to 2 pages, bullet fonts not matching body text). Compile both
+documents and visually verify the PDFs before presenting.
 
 ### 5a. Compile
 
 ```bash
-cd cv && lualatex -interaction=nonstopmode main_<company>.tex
+cd cv && uv run python build.py pdf --override overrides/<company>.yaml
 cd ../cover_letters && xelatex -interaction=nonstopmode cover_<company>_<role>.tex
 ```
 
-- CV uses **lualatex** — pdflatex fails on modern MiKTeX with fontawesome5 font-expansion errors. lualatex handles the same sources cleanly.
-- Cover letter uses **xelatex** — cover.cls requires fontspec.
+- CV uses **RenderCV/Typst by default** — only use `lualatex -interaction=nonstopmode main_<company>.tex` on `cv/main_<company>.tex` if the user explicitly requested the LaTeX template.
+- Cover letter uses **xelatex** — cover.cls requires fontspec (cover letters are unaffected by the CV renderer choice).
 
 If either compile fails, fix the error and re-compile until clean.
 
@@ -229,6 +235,8 @@ An ATS parser reads the PDF's embedded **text layer**, not the rendered page —
 ```bash
 cd cv && pdftotext -layout main_<company>.pdf main_<company>.txt
 ```
+
+(Same command regardless of renderer — both RenderCV and LaTeX produce `cv/main_<company>.pdf`.)
 
 Read the `.txt` file.
 
@@ -276,7 +284,8 @@ Summarize 3-5 key decisions made to tailor the application:
 
 ### Files Created
 List the files written:
-- `cv/main_<company>.tex`
+- `cv/overrides/<company>.yaml` and `cv/main_<company>.pdf` (default), or `cv/main_<company>.tex`
+  and its compiled `.pdf` if the user requested the LaTeX template
 - `cover_letters/cover_<company>_<role>.tex`
 
 Tell the user: "Both files are ready for your review. Open them to check the final output before compiling."

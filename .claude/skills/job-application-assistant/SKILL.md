@@ -25,9 +25,12 @@ When the user provides a job posting (URL or text), follow this workflow:
 - Ask the user if they want to proceed with an application
 
 ### Step 2: Tailor CV
-- Read the most relevant existing CV variant from `cv/` as a starting point
+- Read `cv/cv.yaml` as the master data source (unless the user asked for the LaTeX template, in
+  which case read the most relevant existing `cv/main_*.tex` variant instead)
 - Follow the guidelines in `05-cv-templates.md`
-- Create `cv/main_<company>.tex` with tailored content
+- By default: create `cv/overrides/<company>.yaml` with only the tailored fields, then build
+  `cv/main_<company>.pdf` via `cd cv && uv run python build.py pdf --override overrides/<company>.yaml`
+- If the user explicitly asked for LaTeX: create `cv/main_<company>.tex` with tailored content instead
 - Adjust: profile statement, skills section, experience bullet emphasis, section order
 
 ### Step 3: Write Cover Letter
@@ -52,7 +55,7 @@ When the user provides a job posting (URL or text), follow this workflow:
 | `02-behavioral-profile.md` | Behavioral assessment, strengths, ideal environments |
 | `03-writing-style.md` | Tone, structure, do's and don'ts |
 | `04-job-evaluation.md` | Scoring framework for job fit |
-| `05-cv-templates.md` | LaTeX CV structure and tailoring rules |
+| `05-cv-templates.md` | CV structure and tailoring rules (RenderCV default, LaTeX legacy) |
 | `06-cover-letter-templates.md` | LaTeX cover letter structure and tailoring rules |
 | `07-interview-prep.md` | STAR examples, tough questions, roleplay guidelines |
 
