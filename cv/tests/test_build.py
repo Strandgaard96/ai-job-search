@@ -89,3 +89,52 @@ def test_pdf_build_with_override_produces_distinct_filename():
         override_path.unlink(missing_ok=True)
         out_path.unlink(missing_ok=True)
         shutil.rmtree("rendercv_output", ignore_errors=True)
+
+
+# ── profile regeneration ───────────────────────────────────────────────────────
+
+def test_replace_marked_replaces_only_between_markers():
+    from build import _replace_marked
+    text = (
+        "before\n"
+        "<!-- CV-YAML:FOO:START -->\nold content\n<!-- CV-YAML:FOO:END -->\n"
+        "after"
+    )
+    result = _replace_marked(text, "FOO", "new content")
+    assert result == (
+        "before\n"
+        "<!-- CV-YAML:FOO:START -->\nnew content\n<!-- CV-YAML:FOO:END -->\n"
+        "after"
+    )
+
+
+def test_replace_marked_raises_if_markers_missing():
+    import pytest
+    from build import _replace_marked
+    with pytest.raises(RuntimeError, match="not found"):
+        _replace_marked("no markers here", "MISSING", "x")
+
+
+def test_build_profile_regenerates_only_marked_sections():
+    from build import build_profile
+    import pathlib
+
+    profile_path = pathlib.Path(
+        "../.claude/skills/job-application-assistant/01-candidate-profile.md"
+    )
+    original = profile_path.read_text()
+    try:
+        assert "<!-- CV-YAML:IDENTITY:START -->" in original, (
+            "Task 4 Step 1 must insert markers before this test can pass"
+        )
+        build_profile()
+        updated = profile_path.read_text()
+        # Content outside any marker (Behavioral-adjacent Awards/References) is untouched
+        assert "## Awards" in updated
+        assert "## References" in updated
+        assert "[none listed - add if applicable]" in updated
+        # Marked content reflects cv.yaml, not stale hand-typed duplicates
+        assert "**Name:** Magnus Strandgaard" in updated
+        assert "JACS Au" in updated
+    finally:
+        profile_path.write_text(original)
