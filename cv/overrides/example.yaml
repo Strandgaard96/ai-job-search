@@ -1,0 +1,17 @@
+# Example override for a data engineering / ML role.
+# Only fields listed here are changed; everything else comes from cv.yaml.
+cv:
+  sections:
+    summary:
+      - "Computational chemist turned data engineer with a track record of building
+        end-to-end ML pipelines on HPC and cloud. PhD in computational chemistry.
+        Deep experience with PyTorch, distributed training, and AWS data infrastructure."
+    experience:
+      - company: Netcompany
+        position: Linux Operations Engineer
+        location: Copenhagen, DK
+        start_date: "2025"
+        end_date: present
+        highlights:
+          - "**Cut AWS spend by ~$3,500/month** by building a Python data-processing and visualization pipeline that replaced a costly legacy service."
+          - "Maintained AWS infrastructure (**S3, EC2, RDS, IAM, CloudWatch**) for a 1M+ user application, writing Terraform for all resource changes."

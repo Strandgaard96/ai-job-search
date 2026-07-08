@@ -50,3 +50,42 @@ def test_output_stem_no_override():
 def test_output_stem_with_override():
     from build import _output_stem
     assert _output_stem(pathlib.Path("overrides/netcompany.yaml")) == "netcompany"
+
+
+# ── PDF build smoke tests ──────────────────────────────────────────────────────
+
+def test_pdf_build_no_override_produces_main_example():
+    import subprocess
+    import sys
+    result = subprocess.run(
+        [sys.executable, "build.py", "pdf"],
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stderr
+    assert pathlib.Path("main_example.pdf").exists()
+
+
+def test_pdf_build_with_override_produces_distinct_filename():
+    import subprocess
+    import sys
+    import shutil
+
+    override_path = pathlib.Path("overrides/_test_company.yaml")
+    override_path.write_text(
+        'cv:\n  sections:\n    summary:\n      - "Test override summary."\n'
+    )
+    out_path = pathlib.Path("main__test_company.pdf")
+    try:
+        result = subprocess.run(
+            [sys.executable, "build.py", "pdf", "--override", str(override_path)],
+            capture_output=True,
+            text=True,
+        )
+        assert result.returncode == 0, result.stderr
+        assert out_path.exists()
+        assert out_path != pathlib.Path("main_example.pdf")
+    finally:
+        override_path.unlink(missing_ok=True)
+        out_path.unlink(missing_ok=True)
+        shutil.rmtree("rendercv_output", ignore_errors=True)
