@@ -2,6 +2,103 @@
 
 <!-- SETUP: Profile statements and section ordering are personalized by running /setup -->
 
+## Default renderer: RenderCV
+
+**RenderCV is the default CV renderer. Use it unless the user explicitly asks for the LaTeX
+template** (trigger phrases: "use the LaTeX template", "use moderncv", or similar explicit
+requests — never ask "which renderer?" by default).
+
+**Master data file:** `cv/cv.yaml` (all CV content — identity, education, experience, skills,
+publications, projects; comprehensive reference, use as source when building targeted CVs)
+**Per-company tailoring:** `cv/overrides/<company>.yaml` — only the fields that differ from
+`cv.yaml` (profile statement, reordered/reworded highlights). Arrays are replaced wholesale, not
+merged — override only the entries you want to change.
+**Output file:** `cv/main_<company>.pdf` (the company segment is the override file's stem)
+**Compile command:**
+
+```bash
+cd cv && uv run python build.py pdf --override overrides/<company>.yaml
+```
+
+Expected output: `Built main_<company>.pdf`. `cv/main_<company>.pdf` must exist afterward.
+
+### Compile-and-Inspect Loop (MANDATORY, RenderCV)
+
+1. Run the compile command above.
+2. Read the PDF via the Read tool and visually inspect it.
+3. Confirm the page count is exactly 2 (see "Page Budget" below — unchanged from the LaTeX path).
+4. If it isn't, cut or restore content per "Relevance-weighted cutting" below (this guidance is
+   renderer-agnostic — it applies identically whether the underlying engine is Typst or LaTeX).
+
+### ATS Parseability (RenderCV)
+
+Identical check to the LaTeX path — the output is still a PDF, and an ATS still reads its
+embedded text layer, not the rendered page:
+
+```bash
+cd cv && pdftotext -layout main_<company>.pdf main_<company>.txt
+```
+
+Same checks apply: no `(cid:*)` markers or `�` characters, email/phone present as literal text,
+reading order matches visual order, keyword coverage against the posting. See "ATS Parseability"
+under the Legacy section below for the full checklist — it is unchanged, just also applies here.
+
+### Photo
+
+`cv.yaml`'s `photo:` field points at `cv_image.jpeg`. `build.py` automatically applies a circular
+crop via a Typst post-processing patch — no manual step needed.
+
+## Page Budget - Hard 2-Page Limit
+
+The CV **must** fit on exactly 2 pages when compiled. Use these content limits as a guide:
+
+| Section | Max budget |
+|---------|-----------|
+| Profile statement | 3-4 lines |
+| Skills | 5 items, each 1-2 lines |
+| Most recent role | 4-5 bullets |
+| Previous role | 2-3 bullets |
+| Older roles | 2 bullets (1 line each) |
+| Education | 2-3 entries |
+| Publications | 2-3 entries |
+| Awards | 3 entries, single line each |
+| References | "Available upon request." (single line) |
+
+**If in doubt, cut rather than squeeze.** Reducing `\vspace` or geometry scale to force-fit content makes the CV look cramped.
+
+## Relevance-weighted cutting (the right way to shrink a CV)
+
+**Cut by signal, not by section.** Static priority lists ("remove oldest education first, then shorten the earliest role...") are wrong when a relevant "lower-priority" item is competing with an irrelevant "higher-priority" item. An older-role bullet that speaks directly to the posting is worth more than a recent-role bullet that does not.
+
+For every candidate line, score three things:
+
+1. **Relevance to THIS posting** — does the line hit a named tool, keyword, or stated responsibility in the job ad?
+2. **Uniqueness** — is it the only place this claim appears, or is it duplicated elsewhere in the CV?
+3. **Narrative load** — does the cover letter depend on it? If cutting the line would force you to rewrite a cover-letter paragraph, it is load-bearing.
+
+Cut the lowest-total-score line first, regardless of which section it sits in.
+
+### Practical order of cuts (easiest → last resort)
+
+1. **Redundancy.** If an achievement appears in both Core Competencies AND a role bullet, the Core Competencies version is usually the cleaner cut (the experience bullet is more concrete evidence).
+2. **Profile-statement fluff.** A sentence that just restates what Publications or Skills will show. ("Peer-reviewed publications on X..." is already a Publications entry — profile can claim it once and stop.)
+3. **Low-relevance experience bullets.** A bullet about work that does not touch posting keywords, wherever it sits. This cuts across sections before touching the structural list.
+4. **Low-relevance supporting content.** An older-role bullet that does not speak to the target role. A certification that does not touch the posting's stack. A language entry that can be condensed to one line.
+5. **Low-relevance publications.** Keep 1-2 publications that best match the posting. Cut the rest before touching experience bullets.
+6. **Last-resort structural cuts.** Oldest education entry, tightening an older role to 2 bullets, collapsing Certifications into a single line. These only happen if the relevance-weighted cuts above have already been exhausted.
+
+### Pitfalls to avoid
+
+- Do not mechanically cut from the bottom of a static section list without checking relevance. "Cut the oldest role first" is wrong if that role is literally about the skill the posting asks for.
+- Do not cut the one concrete example the cover letter leans on. Relevance is measured against the cover letter you wrote, not just the job posting — interviewers will have read both.
+- Do not cut to fit if the fit is borderline (2.02 pages). Prefer `\enlargethispage{2-3\baselineskip}` on a late section for near-misses; reserve content cuts for genuine overflow (content on page 3 that is more than a single trailing section).
+
+## Legacy: LaTeX/moderncv (opt-in only)
+
+**Use this only when the user explicitly asks for the LaTeX template** (e.g. "use the LaTeX
+template", "use moderncv"). Everything below this point describes the LaTeX/moderncv path;
+RenderCV (above) is the default for all other requests.
+
 ## Template: LaTeX moderncv (Banking Style)
 
 All CVs use the moderncv LaTeX package with the "banking" style and "blue" color scheme.
@@ -189,51 +286,6 @@ What to check in the extraction:
 - **No garbled output.** `(cid:NNN)` markers or `�` characters mean a font is embedded without a Unicode mapping - an ATS sees the same garbage. This shows up with unusual fonts in custom templates, not with the stock moderncv setup under lualatex.
 - **Reading order.** The stock banking style is single-column, so extraction order matches visual order. Custom templates (via `/add-template`) with sidebars or multi-column layouts can interleave unrelated lines; if extraction order is scrambled, the user is trading ATS compatibility for looks and should be told.
 - **Keyword coverage.** Match the posting's required/preferred terms against the extracted text, in the posting's language. Prefer the posting's exact term over a synonym when it is truthfully applicable - ATS matching is often literal. Never add a keyword the profile does not support.
-
-## Page Budget - Hard 2-Page Limit
-
-The CV **must** fit on exactly 2 pages when compiled. Use these content limits as a guide:
-
-| Section | Max budget |
-|---------|-----------|
-| Profile statement | 3-4 lines |
-| Skills | 5 items, each 1-2 lines |
-| Most recent role | 4-5 bullets |
-| Previous role | 2-3 bullets |
-| Older roles | 2 bullets (1 line each) |
-| Education | 2-3 entries |
-| Publications | 2-3 entries |
-| Awards | 3 entries, single line each |
-| References | "Available upon request." (single line) |
-
-**If in doubt, cut rather than squeeze.** Reducing `\vspace` or geometry scale to force-fit content makes the CV look cramped.
-
-## Relevance-weighted cutting (the right way to shrink a CV)
-
-**Cut by signal, not by section.** Static priority lists ("remove oldest education first, then shorten the earliest role...") are wrong when a relevant "lower-priority" item is competing with an irrelevant "higher-priority" item. An older-role bullet that speaks directly to the posting is worth more than a recent-role bullet that does not.
-
-For every candidate line, score three things:
-
-1. **Relevance to THIS posting** — does the line hit a named tool, keyword, or stated responsibility in the job ad?
-2. **Uniqueness** — is it the only place this claim appears, or is it duplicated elsewhere in the CV?
-3. **Narrative load** — does the cover letter depend on it? If cutting the line would force you to rewrite a cover-letter paragraph, it is load-bearing.
-
-Cut the lowest-total-score line first, regardless of which section it sits in.
-
-### Practical order of cuts (easiest → last resort)
-
-1. **Redundancy.** If an achievement appears in both Core Competencies AND a role bullet, the Core Competencies version is usually the cleaner cut (the experience bullet is more concrete evidence).
-2. **Profile-statement fluff.** A sentence that just restates what Publications or Skills will show. ("Peer-reviewed publications on X..." is already a Publications entry — profile can claim it once and stop.)
-3. **Low-relevance experience bullets.** A bullet about work that does not touch posting keywords, wherever it sits. This cuts across sections before touching the structural list.
-4. **Low-relevance supporting content.** An older-role bullet that does not speak to the target role. A certification that does not touch the posting's stack. A language entry that can be condensed to one line.
-5. **Low-relevance publications.** Keep 1-2 publications that best match the posting. Cut the rest before touching experience bullets.
-6. **Last-resort structural cuts.** Oldest education entry, tightening an older role to 2 bullets, collapsing Certifications into a single line. These only happen if the relevance-weighted cuts above have already been exhausted.
-
-### Pitfalls to avoid
-
-- Do not mechanically cut from the bottom of a static section list without checking relevance. "Cut the oldest role first" is wrong if that role is literally about the skill the posting asks for.
-- Do not cut the one concrete example the cover letter leans on. Relevance is measured against the cover letter you wrote, not just the job posting — interviewers will have read both.
-- Do not cut to fit if the fit is borderline (2.02 pages). Prefer `\enlargethispage{2-3\baselineskip}` on a late section for near-misses; reserve content cuts for genuine overflow (content on page 3 that is more than a single trailing section).
 
 ## Recommended Section Order
 
