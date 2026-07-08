@@ -3,7 +3,7 @@ name: job-scraper
 description: >
   Scrapes Danish job sites for new positions matching your profile. Deduplicates across runs.
   Triggers on: job scrape, find jobs, search jobs, new jobs, job search, scrape jobs, /scrape
-allowed-tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch, Agent, AskUserQuestion
+allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, Agent, AskUserQuestion
 ---
 
 # Job Scraper
@@ -35,6 +35,16 @@ Optional arguments:
 1. Read `job_scraper/seen_jobs.json` (create if missing - start with `{"seen": {}}`)
 2. Read `job_search_tracker.csv` to extract already-applied companies+roles
 3. Read `search-queries.md` (this directory) for the search strategy
+4. Discover installed portal CLIs: run `Glob(".agents/skills/*/SKILL.md")`, keep only paths whose
+   parent directory name ends in `-search` and that also has a `cli/src/cli.ts` file (confirm
+   with `Glob(".agents/skills/<name>/cli/src/cli.ts")` per candidate). This is the live roster of
+   portals for this run - never hardcode portal names here. When a new portal skill is added
+   later (e.g. via `/add-portal`), it is picked up automatically on the next run with no edit to
+   this file.
+5. For each discovered portal, read its `SKILL.md` "Key flags" section once to note: the keyword
+   flag it uses (`--query`, `--key`, `--text`, `--search-string`), and how it takes location
+   (`--location`/`-l` as free text, a region/municipality flag, or folded into the keyword query -
+   documented in that portal's own `SKILL.md`).
 
 ### Step 1: Search
 
