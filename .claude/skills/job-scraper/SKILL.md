@@ -48,14 +48,29 @@ Optional arguments:
 
 ### Step 1: Search
 
-Run **WebSearch** queries from `search-queries.md`. By default, run the top 3 priority categories. If the user said "broad", run all categories.
+For each portal discovered in Step 0, call its CLI directly via Bash - never use WebSearch for
+portal scraping.
 
-If the user specified a focus area (e.g. "data science"), prioritize queries from that category.
-
-For each search:
-- Use `WebSearch` with site-specific queries (jobindex.dk, linkedin.com/jobs, karriere.dk, etc.)
-- Target your configured geographic area
-- Look for postings from the last 14 days
+1. Pick the priority categories to run: by default the top 3 from `search-queries.md`; all
+   categories if the user said "broad"; the matching category (plus 2-3 custom queries) if the
+   user gave a focus area.
+2. For each selected category, take its query strings and strip the `site:<domain>` prefix and
+   any bare location tokens (e.g. `Copenhagen`, `OR [YOUR_REGION]`) to recover the core
+   keyword/title phrase. Example: `site:jobindex.dk "Software Engineer" OR "ML Engineer"
+   Copenhagen` becomes the keyword phrase `software engineer OR ML engineer`.
+3. For each discovered portal, run its `search` command with that keyword phrase via the flag
+   noted in Step 0, plus the portal's own location mechanism, sourced from the candidate's
+   location filter in `search-queries.md`. Examples: `--location 2` for Storkøbenhavn on
+   `jobbank-search`; `--region HovedstadenOgBornholm` on `jobnet-search`; `--municipality
+   "København"` on `jobdanmark-search`; `-l "Copenhagen, Capital Region, Denmark"` on
+   `linkedin-search`; city folded directly into `--query` on `jobindex-search` (its API has no
+   location parameter). Use `--jobage 14` (or the portal's closest equivalent) to bias toward
+   recent postings.
+4. Record, per portal: which categories were run, which location(s) were passed, how many raw
+   results came back, and whether the call errored (non-zero exit, rate limit, timeout). This
+   record feeds the Portal Coverage table in Step 5.
+5. Sites listed in `search-queries.md` with no discovered CLI match are not queried at all - no
+   WebSearch fallback. Record them as uncovered for the Step 5 report.
 
 ### Step 2: Fetch & Parse
 
