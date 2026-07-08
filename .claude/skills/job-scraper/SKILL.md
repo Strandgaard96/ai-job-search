@@ -109,7 +109,29 @@ For each new job, do a rapid fit check (NOT the full evaluation from `04-job-eva
 
 ### Step 5: Present Results
 
-Present new jobs in a table sorted by fit (high first):
+First, print the Portal Coverage table from the record kept in Step 1:
+
+```
+### Portal Coverage
+| Portal | Status | Locations queried |
+|--------|--------|--------------------|
+| jobindex-search | Searched | Denmark-wide (city in query) |
+| jobbank-search | Searched | Storkøbenhavn |
+| jobdanmark-search | Searched | København |
+| jobnet-search | Searched | Hovedstaden og Bornholm |
+| linkedin-search | Searched | Copenhagen |
+| karriere.dk | Not searched | no CLI installed - /add-portal or paste posting into /apply |
+| jobfinder.dk | Not searched | no CLI installed |
+| akademikernes.dk | Not searched | no CLI installed |
+```
+
+Fill this table from what actually happened this run - a portal with an error shows `Error` with
+a short reason (e.g. "rate limited, backed off") instead of `Searched`, and is never silently
+dropped from the table. A portal skipped because the user picked a narrow focus area still gets a
+row, showing which categories were and weren't run. "Locations queried" always reflects what was
+actually passed this run, not every location the portal could support.
+
+Then present new jobs in a table sorted by fit (high first):
 
 ```
 ## New Job Matches - YYYY-MM-DD
@@ -142,9 +164,9 @@ If the user decides to apply to any job, add a row to `job_search_tracker.csv`.
 
 ## Important Rules
 
-1. **Never fabricate job postings.** Only present jobs found via actual WebSearch/WebFetch results.
+1. **Never fabricate job postings.** Only present jobs found via actual portal-CLI or WebFetch results.
 2. **Respect deduplication.** Always check seen_jobs.json AND job_search_tracker.csv before presenting.
 3. **Focus on configured geographic area.** Skip jobs that require relocation or are clearly outside commute range.
 4. **Only open positions.** Skip postings with expired deadlines or those marked as closed.
 5. **Be efficient with WebFetch.** Don't fetch every search result - use titles and snippets to pre-filter before fetching.
-6. **Parallel searches.** Use the Agent tool or parallel WebSearch calls to speed up the search phase.
+6. **Parallel searches.** Run multiple portal CLI calls in parallel (several Bash calls in one turn) to speed up the search phase.
