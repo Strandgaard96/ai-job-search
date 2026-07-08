@@ -65,7 +65,7 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 - Roles with no technical depth (pure sales/business-development)
 
 ## Repo Structure
-- `cv/` - LaTeX CV variants (moderncv template, banking style)
+- `cv/` - CV data and templates: `cv.yaml` + `build.py` (RenderCV, default) and moderncv LaTeX variants (opt-in only, see `05-cv-templates.md`)
 - `cover_letters/` - LaTeX cover letters (custom cover.cls template)
 - `.claude/skills/` - AI skill definitions for the application workflow
 - `.agents/skills/` - Job search CLI tools
@@ -73,7 +73,7 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 ## Workflow for New Job Applications
 1. User provides a job posting (URL or text)
 2. **Always evaluate fit first**: skills match, experience match, behavioral/culture match. Present this assessment to the user before proceeding.
-3. If good fit: create targeted CV (`cv/main_<company>.tex`) and cover letter (`cover_letters/cover_<company>_<role>.tex`)
+3. If good fit: create targeted CV (`cv/overrides/<company>.yaml` + `cv/main_<company>.pdf` via RenderCV by default, or `cv/main_<company>.tex` if the user explicitly requested LaTeX) and cover letter (`cover_letters/cover_<company>_<role>.tex`)
 4. **Verify both documents** (see Verification Checklist below)
 5. Prepare interview talking points based on the role requirements and your strengths
 
