@@ -71,3 +71,10 @@ upskill/*.md
 .agents/**/node_modules/
 .agents/**/*.log
 .agents/usage/
+
+# RenderCV build system (cv/cv.yaml and cv/overrides/example.yaml are tracked templates;
+# per-company overrides and build scratch are personal/regenerable)
+cv/overrides/*.yaml
+!cv/overrides/example.yaml
+cv/rendercv_output/
+cv/rendercv_input_tmp.yaml
