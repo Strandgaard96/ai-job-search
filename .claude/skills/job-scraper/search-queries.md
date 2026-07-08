@@ -18,33 +18,33 @@ Secondary (company career pages via Google):
 
 Queries are grouped by priority. Each query should be combined with your location terms (e.g. "Copenhagen", "Sjælland", "Hovedstaden") where the site supports it.
 
-### Priority 1: [YOUR_PRIMARY_ROLE_TYPE]
+### Priority 1: Software / ML Engineering
 
 These match your strongest and most desired career direction.
 
 ```
-site:jobindex.dk "[YOUR_PRIMARY_JOB_TITLE]" [YOUR_CITY]
-site:jobindex.dk "[YOUR_KEY_SKILL]" [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_PRIMARY_JOB_TITLE]" [YOUR_COUNTRY]
+site:jobindex.dk "Software Engineer" OR "ML Engineer" OR "Data Scientist" Copenhagen
+site:jobindex.dk "Python" "Terraform" OR "AWS" Copenhagen
+site:linkedin.com/jobs "Software Engineer" OR "Machine Learning Engineer" Denmark
 ```
 
-### Priority 2: [YOUR_DOMAIN_EXPERTISE]
+### Priority 2: Computational Chemistry / Scientific ML
 
-These match your domain expertise.
-
-```
-site:jobindex.dk [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] OR [YOUR_REGION]
-site:jobindex.dk [YOUR_DOMAIN_KEYWORD_2] [YOUR_COUNTRY]
-site:linkedin.com/jobs [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] [YOUR_COUNTRY]
-```
-
-### Priority 3: [YOUR_ADJACENT_ROLE_TYPE]
-
-Adjacent roles you could pivot into.
+These match your PhD domain expertise.
 
 ```
-site:jobindex.dk "[YOUR_ADJACENT_TITLE_1]" [YOUR_KEY_SKILL] [YOUR_CITY]
-site:jobindex.dk "[YOUR_ADJACENT_TITLE_2]" [YOUR_KEY_SKILL] [YOUR_CITY]
+site:jobindex.dk "Computational Chemist" OR "Cheminformatics" Copenhagen OR Sjælland
+site:jobindex.dk "Research Scientist" cheminformatics OR "molecular design" Denmark
+site:linkedin.com/jobs cheminformatics OR "computational chemistry" Copenhagen Denmark
+```
+
+### Priority 3: Applied / Research Scientist (Adjacent)
+
+Adjacent roles bridging the two directions above.
+
+```
+site:jobindex.dk "Applied Scientist" OR "Research Scientist" Python OR PyTorch Copenhagen
+site:jobindex.dk "Machine Learning" chemistry OR materials OR "drug discovery" Copenhagen
 ```
 
 ### Priority 4: Broader Technical / Consulting
@@ -52,19 +52,19 @@ site:jobindex.dk "[YOUR_ADJACENT_TITLE_2]" [YOUR_KEY_SKILL] [YOUR_CITY]
 Wider net for general technical roles.
 
 ```
-site:jobindex.dk [YOUR_KEY_SKILL] developer [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_KEY_SKILL] developer" [YOUR_CITY]
-site:jobindex.dk "technical consultant" [YOUR_DOMAIN] [YOUR_CITY]
+site:jobindex.dk Python developer Copenhagen
+site:linkedin.com/jobs "Python developer" OR "cloud engineer" Copenhagen
+site:jobindex.dk "technical consultant" Python OR cloud Copenhagen
 ```
 
 ## Location Filter
 
-When evaluating results, verify the job location is within reasonable commute distance from your home. Define acceptable areas:
-- [YOUR_CITY] and surrounding areas
-- [ACCEPTABLE_AREA_1]
-- [ACCEPTABLE_AREA_2]
-- [BORDERLINE_AREA] (borderline - ~X min by transit)
-- [TOO_FAR_AREA] (too far)
+When evaluating results, verify the job location is within reasonable commute distance from home, or in the accepted secondary city. Define acceptable areas:
+- Copenhagen and surrounding areas (ideal)
+- Oslo, Norway (acceptable - candidate is open to this location)
+- Rest of Sjælland / Hovedstaden region (acceptable, longer commute)
+- Rest of Denmark or Norway outside these areas (borderline - discuss remote/relocation feasibility with candidate)
+- Outside Denmark/Norway, or roles requiring frequent international travel (too far / deal-breaker)
 
 ## Date Filter
 

@@ -105,12 +105,11 @@ Write 5-7 lines that function as an "elevator pitch": a concise, compelling intr
 
 **Create 2-3 profile statement templates for your main role types:**
 
-<!-- SETUP: These are populated based on your background -->
-**For [YOUR_PRIMARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_1]
+**For Software/ML Engineering roles:**
+> Software engineer combining hands-on production experience (AWS, Terraform, CI/CD supporting a 1M+ user application) with a PhD-level background in applied machine learning. Builds end-to-end Python/ML pipelines, from data ingestion to production deployment, and has driven measurable infrastructure and cost improvements. Comfortable owning technical problems independently and shipping fast, including directing AI coding agents (Claude Code) as part of the development workflow.
 
-**For [YOUR_SECONDARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_2]
+**For Computational Chemistry / Scientific ML roles:**
+> Computational chemist (PhD, University of Copenhagen) specializing in generative ML for molecular and catalyst design, combining quantum chemistry with genetic algorithms, variational autoencoders, and graph neural networks. Track record of building and operating full data-to-model pipelines (RDKit, PyTorch, HPC/SLURM) and publishing peer-reviewed results in JACS Au, Chemical Science, and Journal of Cheminformatics. Now pairs this domain depth with enterprise cloud/software engineering experience (AWS, Terraform).
 
 ### Core Competencies / Skills Section (Best Practice)
 Reorder and emphasize based on the role. Use bold category labels.

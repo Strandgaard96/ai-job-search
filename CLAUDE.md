@@ -1,10 +1,7 @@
-# Job Application Assistant for [YOUR_NAME]
-
-<!-- SETUP: This file is populated by running /setup -->
-<!-- After running /setup, all [PLACEHOLDER] tokens will be replaced with your actual information -->
+# Job Application Assistant for Magnus Strandgaard
 
 ## Role
-This repo is a job application workspace. Claude acts as a career advisor and application assistant for [YOUR_NAME], helping with:
+This repo is a job application workspace. Claude acts as a career advisor and application assistant for Magnus Strandgaard, helping with:
 1. **Job fit evaluation** - Assess job postings against your profile (skills, experience, behavioral traits)
 2. **CV tailoring** - Adapt existing CV templates (LaTeX/moderncv) to target specific roles
 3. **Cover letter writing** - Draft targeted cover letters using existing templates (LaTeX)
@@ -13,68 +10,59 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 
 ## Candidate Profile
 
-<!-- This section is auto-populated by /setup. You can also fill it in manually. -->
-
 ### Identity
-- **Name:** [YOUR_NAME]
-- **Location:** [YOUR_CITY], [YOUR_COUNTRY] ([YOUR_COMMUTE_CONSTRAINTS])
-- **Languages:** [YOUR_LANGUAGES]
-- **Status:** [YOUR_EMPLOYMENT_STATUS]
-- **LinkedIn headline:** "[YOUR_LINKEDIN_HEADLINE]"
+- **Name:** Magnus Strandgaard
+- **Location:** Copenhagen, Denmark (open to Oslo, Norway; not open to roles requiring frequent international travel)
+- **Languages:** Danish (native), Norwegian (native), English (fluent), Spanish (basic)
+- **Status:** Employed (Linux Operations Engineer, Netcompany)
+- **LinkedIn headline:** "Software Engineer | PhD Computational Chemistry | AWS/Terraform | ML"
 
 ### Education
-<!-- List your degrees, most recent first -->
-- **[DEGREE_LEVEL] in [FIELD]** ([YEAR_START]-[YEAR_END]) - [INSTITUTION]
-  - Thesis: "[THESIS_TITLE]"
-  - Topics: [KEY_TOPICS]
+- **PhD in Computational Chemistry** (2021-2024) - University of Copenhagen
+  - Topics: Generative ML (genetic algorithms, VAEs) for catalyst design and transition-metal complex inverse design, quantum chemistry
+- **MSc in Physics and Nanotechnology** (2018-2021) - Technical University of Denmark
+- **BSc in Physics and Nanotechnology** (2015-2018) - Technical University of Denmark
 
 ### Professional Experience
-<!-- List your roles, most recent first -->
-- **[JOB_TITLE]** ([START_DATE] - [END_DATE]) - **[COMPANY]** ([LOCATION])
-  - [KEY_RESPONSIBILITY_1]
-  - [KEY_RESPONSIBILITY_2]
-  - [KEY_ACHIEVEMENT]
+- **Linux Operations Engineer** (2025 - present) - **Netcompany** (Copenhagen, DK)
+  - Maintains AWS infrastructure (Terraform) for a 1M+ user application across 11 environments
+  - Became the team's lead Terraform developer within 3 months; led zero-downtime migration of 1,000+ live resources to managed Terraform state
+  - Engineered a Python data-processing pipeline replacing a legacy service, cutting cloud spend by ~$3,500/month
+- **Postdoctoral Researcher** (2024-2025) - **Dept. of Chemistry, University of Copenhagen**
+  - Built predictive ML workflows (molecular fingerprints + graph neural networks) with distributed GPU training via SLURM/WandB
+- **PhD Researcher** (2021-2024) - **Dept. of Chemistry, University of Copenhagen**
+  - Developed end-to-end in silico molecular discovery pipelines (quantum chemistry + generative ML); HPC cluster admin for 50+ users; mentored 60+ undergraduates
 
 ### Technical Skills
-- **Primary:** [YOUR_PRIMARY_SKILLS]
-- **Secondary:** [YOUR_SECONDARY_SKILLS]
-- **Domain:** [YOUR_DOMAIN_EXPERTISE]
-- **Software:** [YOUR_TOOLS_AND_SOFTWARE]
-
-### Certifications
-<!-- List relevant certifications with dates -->
-- **[CERTIFICATION_NAME]** - [HOURS]h - completed [DATE]
+- **Primary:** Python (expert), AWS, Terraform, CI/CD (Azure DevOps, Jenkins), PyTorch, ML/generative modeling
+- **Secondary:** TypeScript/React/Tailwind, Golang, C++, LangChain, dbt
+- **Domain:** Computational chemistry, cheminformatics (RDKit, QSPR/QSAR, ORCA, xTB, VASP, ADF), HPC/SLURM administration
+- **Software:** Docker, Git, Ansible, Proxmox, Jenkins, Azure DevOps, Linux, WandB, MLflow
 
 ### Publications
-<!-- List peer-reviewed publications, if any -->
-- [AUTHOR_LIST] ([YEAR]). [TITLE]. [JOURNAL].
-
-### Awards
-<!-- List relevant awards, hackathons, competitions -->
-- [AWARD_NAME] - [EVENT] ([YEAR])
+- Strandgaard M, et al. (2025). A Deep Generative Model for the Inverse Design of Transition Metal Ligands and Complexes. JACS Au.
+- Strandgaard M, Seumer J, Jensen JH (2024). Discovery of molybdenum-based nitrogen fixation catalysts with genetic algorithms. Chemical Science.
+- Strandgaard M, et al. (2023). Genetic algorithm-based re-optimization of the Schrock catalyst for dinitrogen fixation. PeerJ Physical Chemistry.
+- Rasmussen MH, Strandgaard M, et al. (2025). SMILES All Around: Structure to SMILES conversion for Transition Metal Complexes. Journal of Cheminformatics.
 
 ### Behavioral Profile
-<!-- Your behavioral assessment results (PI, DISC, Myers-Briggs, or self-assessment) -->
-- **[TRAIT_1]** - [DESCRIPTION]
-- **[TRAIT_2]** - [DESCRIPTION]
-- **Strengths:** [YOUR_STRENGTHS]
-- **Growth areas:** [YOUR_GROWTH_AREAS]
-- **Thrives in:** [YOUR_IDEAL_ENVIRONMENT]
+- **Autonomous** - prefers owning problems end-to-end with minimal oversight
+- **Rigorous/structured** - methodical, research-trained approach
+- **Strengths:** Fast technical ramp-up and ownership (led Terraform practice within 3 months), independent research delivery, self-directed initiative (side projects built end-to-end with Claude Code)
+- **Growth areas:** Cross-functional/stakeholder communication at scale; formal people management
+- **Thrives in:** Autonomy-granting environments with technical rigor and fast iteration cycles; see `.claude/skills/job-application-assistant/02-behavioral-profile.md` for full detail
 
 ### What Excites You
-<!-- What motivates you professionally -->
-- [PASSION_1]
-- [PASSION_2]
+- Green energy transition and healthcare applications of computational/ML systems
+- Building production-grade ML/software systems end-to-end, not just research prototypes
 
 ### Target Sectors
-<!-- Industries and companies you're targeting -->
-- [SECTOR_1]: [EXAMPLE_COMPANIES]
-- [SECTOR_2]: [EXAMPLE_COMPANIES]
+- Software/ML engineering (general): tech companies building production ML/data systems
+- Computational chemistry / scientific ML: cheminformatics, drug discovery, materials science, energy storage
 
 ### Deal-breakers
-<!-- Hard constraints on job search -->
-- [DEALBREAKER_1]
-- [DEALBREAKER_2]
+- Roles requiring frequent international travel
+- Roles with no technical depth (pure sales/business-development)
 
 ## Repo Structure
 - `cv/` - LaTeX CV variants (moderncv template, banking style)

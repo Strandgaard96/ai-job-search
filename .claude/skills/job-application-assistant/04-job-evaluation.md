@@ -16,9 +16,9 @@ How well do the required/preferred skills align with the candidate's capabilitie
 | 40-59 | Partial match, significant upskilling needed |
 | 0-39 | Fundamental mismatch |
 
-**Strong match areas:** [YOUR_PRIMARY_SKILLS]
-**Moderate match areas:** [YOUR_SECONDARY_SKILLS]
-**Weak match areas:** [SKILLS_YOU_LACK]
+**Strong match areas:** Python (expert), AWS/Terraform/cloud infrastructure, CI/CD (Azure DevOps, Jenkins), PyTorch/ML, cheminformatics/computational chemistry, HPC/Linux administration
+**Moderate match areas:** TypeScript/React/full-stack web development, Golang, LangChain/dbt, MLOps (WandB/MLflow) in a production (non-research) setting
+**Weak match areas:** Formal people management (no direct reports), sales/business-development roles, roles requiring skills entirely outside software/ML/chemistry (e.g., finance, law)
 
 ### 2. Experience Match (0-100)
 Does work history align with what they're looking for?
@@ -30,9 +30,9 @@ Does work history align with what they're looking for?
 | 40-59 | Adjacent experience, would need to make the case |
 | 0-39 | Unrelated experience |
 
-**Strong:** [YOUR_DIRECT_EXPERIENCE_DOMAINS]
-**Moderate:** [YOUR_ADJACENT_EXPERIENCE]
-**Entry-level:** [ROLES_WITH_LIMITED_EXPERIENCE]
+**Strong:** Cloud/DevOps infrastructure engineering (Netcompany); computational chemistry, cheminformatics, and scientific ML research (PhD/postdoc, UCPH)
+**Moderate:** General software/ML engineering in industry (transferable from research ML + infra work, but limited non-research industry software tenure); full-stack web development (side-project level only)
+**Entry-level:** Formal engineering-management or team-lead titles; pure product/consulting roles without a technical core
 
 ### 3. Behavioral/Culture Fit (0-100)
 Does the role and company culture match the behavioral profile?
@@ -63,19 +63,19 @@ Does this role advance career goals and contain tasks that energize?
 | 0-39 | Dead end or backwards step |
 
 **Career goals:**
-- [YOUR_CAREER_GOAL_1]
-- [YOUR_CAREER_GOAL_2]
-- [YOUR_CAREER_GOAL_3]
+- Move into roles that combine software/ML engineering with computational chemistry or scientific-ML domain expertise (industry cheminformatics, drug discovery, materials science, energy storage)
+- Grow as a software/ML engineer building production-grade systems, not just research prototypes
+- Long-term: apply computational/ML systems to the green energy transition or healthcare
 
 **Motivation filter:** Evaluate not just whether you *can* do the tasks, but whether the tasks will *energize* you. Consider:
-- Tasks that energize: [YOUR_ENERGIZING_TASKS]
-- Tasks that drain: [YOUR_DRAINING_TASKS]
+- Tasks that energize: end-to-end ownership of production ML/software pipelines; applying ML to real scientific, environmental, or healthcare problems; autonomous technical problem-solving
+- Tasks that drain: pure sales/business-development tasks; roles with no technical depth; heavy international travel
 - Non-task factors: leadership style, department culture, company values, degree of autonomy
 
 **Life situation alignment:** Consider personal constraints:
-- **Security**: [YOUR_FINANCIAL_SITUATION_CONTEXT]
-- **Flexibility**: [YOUR_SCHEDULE_CONSTRAINTS]
-- **Professional development**: [YOUR_GROWTH_PRIORITIES]
+- **Security**: Currently employed (Netcompany) - can evaluate roles opportunistically rather than urgently. Target salary baseline: ~650,000 DKK/year
+- **Flexibility**: Based in Copenhagen, DK; open to Oslo, Norway as well. Not open to roles requiring frequent international travel
+- **Professional development**: Prioritizing industry roles that let scientific/ML skills mature to production scale alongside software engineering craft
 
 ### 6. Salary Benchmark (Optional)
 
