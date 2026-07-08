@@ -109,7 +109,12 @@ def _replace_marked(text: str, name: str, replacement: str) -> str:
 
 
 def build_profile() -> None:
-    """Regenerate the CV-derived sections of 01-candidate-profile.md from cv.yaml."""
+    """Regenerate the CV-derived sections of 01-candidate-profile.md from cv.yaml.
+
+    Education is intentionally excluded and stays hand-maintained: cv.yaml's RenderCV
+    schema has no field for per-degree topics, so generating that table would blank the
+    Key Topics column this file otherwise carries.
+    """
     profile_path = pathlib.Path(
         "../.claude/skills/job-application-assistant/01-candidate-profile.md"
     )
@@ -131,16 +136,6 @@ def build_profile() -> None:
         f"- **LinkedIn:** linkedin.com/in/{linkedin_user}\n"
         f"- **GitHub:** github.com/{github_user}\n"
         f"- **Website:** {cv['website']}"
-    )
-
-    education_rows = "\n".join(
-        f"| {e['degree']}, {e['area']} | {e['start_date']}-{e['end_date']} | {e['institution']} | |"
-        for e in s["education"]
-    )
-    education_block = (
-        "| Degree | Period | Institution | Key Topics |\n"
-        "|--------|--------|-------------|------------|\n"
-        f"{education_rows}"
     )
 
     experience_blocks = []
@@ -174,7 +169,6 @@ def build_profile() -> None:
 
     text = profile_path.read_text()
     text = _replace_marked(text, "IDENTITY", identity_block)
-    text = _replace_marked(text, "EDUCATION", education_block)
     text = _replace_marked(text, "EXPERIENCE", experience_block)
     text = _replace_marked(text, "PROJECTS", projects_block)
     text = _replace_marked(text, "SKILLS", skills_block)

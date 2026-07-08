@@ -16,13 +16,14 @@
 
 ## Education
 
-<!-- CV-YAML:EDUCATION:START -->
+<!-- Hand-maintained, not regenerated from cv.yaml: cv.yaml's RenderCV schema has no field for
+     per-degree topics, so this table would lose its Key Topics content on every regeneration.
+     Keep in sync with cv/cv.yaml's education entries manually if degrees/dates change. -->
 | Degree | Period | Institution | Key Topics |
 |--------|--------|-------------|------------|
-| PhD, Computational Chemistry | 2021-2024 | University of Copenhagen | |
-| MSc, Physics and Nanotechnology | 2018-2021 | Technical University of Denmark | |
-| BSc, Physics and Nanotechnology | 2015-2018 | Technical University of Denmark | |
-<!-- CV-YAML:EDUCATION:END -->
+| PhD, Computational Chemistry | 2021-2024 | University of Copenhagen | Generative ML (genetic algorithms, VAEs) for catalyst design and transition-metal complex inverse design; quantum chemistry |
+| MSc, Physics and Nanotechnology | 2018-2021 | Technical University of Denmark | Physics, nanotechnology, materials |
+| BSc, Physics and Nanotechnology | 2015-2018 | Technical University of Denmark | Physics, nanotechnology fundamentals |
 
 ## Professional Experience
 
