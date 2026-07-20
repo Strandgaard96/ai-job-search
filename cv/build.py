@@ -177,6 +177,59 @@ def build_profile() -> None:
     print(f"Regenerated CV-derived sections in {profile_path}")
 
 
+SECTION_MATCH_FIELDS = {
+    "publications": ("doi", "title"),
+    "experience": ("company", "position", "start_date"),
+    "projects": ("name",),
+    "skills": ("label",),
+    "education": ("institution", "degree", "start_date"),
+}
+
+
+def _entry_key(section: str, entry) -> tuple:
+    """Stable identity for one section entry, for matching across master/override."""
+    if isinstance(entry, str):
+        return (entry,)
+    if section == "publications":
+        return (entry.get("doi") or entry.get("title"),)
+    fields = SECTION_MATCH_FIELDS.get(section)
+    if fields is None:
+        raise ValueError(f"no match key defined for section '{section}'")
+    return tuple(entry.get(f) for f in fields)
+
+
+def find_violations(master: dict, override: dict, protected: dict) -> list[str]:
+    """Check an override against protected.yaml's no_cut/no_reword locks. Returns violation strings."""
+    violations = []
+    master_sections = master.get("cv", {}).get("sections", {})
+    override_sections = override.get("cv", {}).get("sections", {})
+
+    for section in protected.get("no_cut", []):
+        if section not in override_sections:
+            continue
+        master_entries = master_sections.get(section, [])
+        override_entries = override_sections.get(section, [])
+        master_keys = {_entry_key(section, e) for e in master_entries}
+        override_keys = {_entry_key(section, e) for e in override_entries}
+        missing = master_keys - override_keys
+        if missing:
+            violations.append(f"no_cut: {section} missing entries: {sorted(missing)}")
+
+    for section in protected.get("no_reword", []):
+        if section not in override_sections:
+            continue
+        master_entries = master_sections.get(section, [])
+        override_entries = override_sections.get(section, [])
+        master_by_key = {_entry_key(section, e): e for e in master_entries}
+        for entry in override_entries:
+            key = _entry_key(section, entry)
+            master_entry = master_by_key.get(key)
+            if master_entry is not None and master_entry != entry:
+                violations.append(f"no_reword: {section} entry {key} differs from master")
+
+    return violations
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build a CV PDF from cv.yaml via RenderCV.")
     sub = parser.add_subparsers(dest="cmd", required=True)
