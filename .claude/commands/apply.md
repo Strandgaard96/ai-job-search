@@ -173,6 +173,14 @@ Once the reviewer agent returns its feedback:
    - **Tone and style issues:** apply the writing-style-guide fixes (no em-dashes, no cliches, no apologetic hedging, consistent first-person active voice).
    Use Edit for targeted changes; only re-read a file if an edit fails because the surrounding text has shifted.
 3. Do NOT incorporate any suggestion that would fabricate skills or experience. If a posting requirement is a genuine gap, acknowledge it honestly and frame adjacent experience instead.
+4. **Run the protected-content gate:**
+   ```bash
+   cd cv && uv run python build.py validate --override overrides/<company>.yaml
+   ```
+   If it exits non-zero, the override has cut or reworded content locked in `cv/protected.yaml`
+   (by default: publications, projects). Either restore the flagged content, or — if the cut is
+   genuinely intentional for this posting — ask the user to confirm before proceeding. Never pass
+   a violation through silently. Re-run until it prints `OK`.
 
 After all edits are applied, the two files on disk are the final drafts.
 

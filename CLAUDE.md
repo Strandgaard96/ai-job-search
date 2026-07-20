@@ -102,6 +102,7 @@ After creating or updating a CV or cover letter, re-read the generated file and 
 
 ### Quality
 - [ ] No syntax errors in the CV source (valid YAML if RenderCV; balanced braces/correct commands if LaTeX was explicitly requested) or in the cover letter LaTeX (always LaTeX, unaffected by CV renderer choice)
+- [ ] Protected-content validation passes (`cd cv && uv run python build.py validate --override overrides/<company>.yaml` prints `OK`)
 - [ ] No spelling or grammar errors
 - [ ] Agentic coding / AI tooling references mention **Claude Code** by name
 - [ ] Cover letter is addressed to the correct person (or "Dear Hiring Manager" if unknown)

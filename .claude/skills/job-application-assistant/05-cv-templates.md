@@ -70,6 +70,12 @@ The CV **must** fit on exactly 2 pages when compiled. Use these content limits a
 
 **Cut by signal, not by section.** Static priority lists ("remove oldest education first, then shorten the earliest role...") are wrong when a relevant "lower-priority" item is competing with an irrelevant "higher-priority" item. An older-role bullet that speaks directly to the posting is worth more than a recent-role bullet that does not.
 
+**Protected sections are exempt.** Sections listed in `cv/protected.yaml`'s `no_cut` list
+(publications and projects, by default) are never candidates for the lowest-score cut, no matter
+how low they score on relevance to the current posting. `build.py validate --override
+overrides/<company>.yaml` enforces this — run it after any cut and fix any violation before
+compiling.
+
 For every candidate line, score three things:
 
 1. **Relevance to THIS posting** — does the line hit a named tool, keyword, or stated responsibility in the job ad?
