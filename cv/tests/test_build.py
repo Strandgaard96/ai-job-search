@@ -248,3 +248,35 @@ def test_entry_key_publications_falls_back_to_title_without_doi():
 def test_entry_key_string_entry_used_as_its_own_key():
     from build import _entry_key
     assert _entry_key("summary", "Some summary text.") == ("Some summary text.",)
+
+
+# ── validate CLI ────────────────────────────────────────────────────────────
+
+def test_validate_returns_zero_and_prints_ok_when_compliant(capsys):
+    import build
+    import pathlib as _pathlib
+
+    override_path = _pathlib.Path("overrides/_test_validate_ok.yaml")
+    override_path.write_text('cv:\n  sections:\n    experience: []\n')
+    try:
+        code = build.validate(override_path)
+        assert code == 0
+        assert "OK" in capsys.readouterr().out
+    finally:
+        override_path.unlink(missing_ok=True)
+
+
+def test_validate_returns_one_and_prints_violation_when_publication_dropped(capsys):
+    import build
+    import pathlib as _pathlib
+
+    override_path = _pathlib.Path("overrides/_test_validate_bad.yaml")
+    override_path.write_text(
+        'cv:\n  sections:\n    publications:\n      - title: "Only One Kept"\n        doi: "10.0/x"\n'
+    )
+    try:
+        code = build.validate(override_path)
+        assert code == 1
+        assert "no_cut" in capsys.readouterr().err
+    finally:
+        override_path.unlink(missing_ok=True)

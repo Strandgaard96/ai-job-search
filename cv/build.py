@@ -230,6 +230,22 @@ def find_violations(master: dict, override: dict, protected: dict) -> list[str]:
     return violations
 
 
+def validate(override_path: pathlib.Path) -> int:
+    """Check an override against cv/protected.yaml. Returns 0 if clean, 1 if violations found."""
+    master = yaml.safe_load(pathlib.Path("cv.yaml").read_text())
+    protected_path = pathlib.Path("protected.yaml")
+    protected = yaml.safe_load(protected_path.read_text()) if protected_path.exists() else {}
+    override = yaml.safe_load(override_path.read_text())
+
+    violations = find_violations(master, override, protected)
+    if violations:
+        for v in violations:
+            print(v, file=sys.stderr)
+        return 1
+    print("OK")
+    return 0
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build a CV PDF from cv.yaml via RenderCV.")
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -240,9 +256,15 @@ if __name__ == "__main__":
 
     profile_p = sub.add_parser("profile", help="Regenerate 01-candidate-profile.md from cv.yaml")
 
+    validate_p = sub.add_parser("validate", help="Check an override against cv/protected.yaml locks")
+    validate_p.add_argument("--override", type=pathlib.Path, required=True,
+                             help="Override YAML to validate (e.g. overrides/dnv.yaml)")
+
     args = parser.parse_args()
 
     if args.cmd == "pdf":
         build_pdf(args.override)
     elif args.cmd == "profile":
         build_profile()
+    elif args.cmd == "validate":
+        sys.exit(validate(args.override))
