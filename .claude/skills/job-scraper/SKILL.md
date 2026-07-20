@@ -140,7 +140,7 @@ Found X new positions (Y high, Z medium, W low match).
 
 | # | Fit | Title | Company | Location | Deadline | URL |
 |---|-----|-------|---------|----------|----------|-----|
-| 1 | High | ... | ... | ... | ... | [Link](...) |
+| 1 | High | ... | ... | ... | ... | [https://example.com/job/...](https://example.com/job/...) |
 
 ### High-Match Highlights
 For each high-match job, add 2-3 bullet points:
