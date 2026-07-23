@@ -12,7 +12,7 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 
 ### Identity
 - **Name:** Magnus Strandgaard
-- **Location:** Copenhagen, Denmark (open to Oslo, Norway; not open to roles requiring frequent international travel)
+- **Location:** Copenhagen, Denmark or Oslo, Norway (treated as equal); not open to roles requiring frequent international travel
 - **Languages:** Danish (native), Norwegian (native), English (fluent), Spanish (basic)
 - **Status:** Employed (Linux Operations Engineer, Netcompany)
 - **LinkedIn headline:** "Software Engineer | PhD Computational Chemistry | AWS/Terraform | ML"
@@ -57,12 +57,18 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 - Building production-grade ML/software systems end-to-end, not just research prototypes
 
 ### Target Sectors
-- Software/ML engineering (general): tech companies building production ML/data systems
+Software/ML/data engineering roles (AWS, Terraform, Python, ML) only count as a fit when the
+employer's core business sits in one of these mission sectors - the tech stack alone isn't enough:
+- Green energy transition
+- Healthcare
 - Computational chemistry / scientific ML: cheminformatics, drug discovery, materials science, energy storage
 
 ### Deal-breakers
 - Roles requiring frequent international travel
 - Roles with no technical depth (pure sales/business-development)
+- Insurance sector
+- Pure IT sector: generic enterprise software, IT consulting/staffing/outsourcing, financial-IT, or any
+  software/ML role at a company with no tie to a target mission sector above
 
 ## Repo Structure
 - `cv/` - CV data and templates: `cv.yaml` + `build.py` (RenderCV, default) and moderncv LaTeX variants (opt-in only, see `05-cv-templates.md`)

@@ -11,6 +11,9 @@ Primary (Danish job market):
 - **jobfinder.dk** - another major Danish job board
 - **akademikernes.dk** - academic union job board
 
+Primary (Norwegian job market - Oslo is an equal-tier location, see Location Filter):
+- **arbeidsplassen.nav.no** - NAV's official Norwegian public job bank (`arbeidsplassen-search` CLI)
+
 Secondary (company career pages via Google):
 - Direct Google searches with `site:` filters for known target companies
 
@@ -18,14 +21,21 @@ Secondary (company career pages via Google):
 
 Queries are grouped by priority. Each query should be combined with your location terms (e.g. "Copenhagen", "Sjælland", "Hovedstaden") where the site supports it.
 
-### Priority 1: Software / ML Engineering
+**Sector gate (applies to every category below):** a software/ML/data-engineering role only
+counts as a match if the employer's core business is green energy, healthcare, or computational
+chemistry / scientific ML. Generic tech/IT companies, IT consultancies/staffing/outsourcing,
+financial-IT, and insurance are excluded regardless of how well the tech stack matches - see
+Sector Filter below. Don't run bare "Software Engineer Copenhagen"-style queries with no sector
+qualifier; they mostly surface exactly these excluded employers.
 
-These match your strongest and most desired career direction.
+### Priority 1: Software / ML Engineering in Green Energy or Healthcare
+
+Tech-stack match paired with a mission sector - your strongest and most desired direction.
 
 ```
-site:jobindex.dk "Software Engineer" OR "ML Engineer" OR "Data Scientist" Copenhagen
-site:jobindex.dk "Python" "Terraform" OR "AWS" Copenhagen
-site:linkedin.com/jobs "Software Engineer" OR "Machine Learning Engineer" Denmark
+site:jobindex.dk "Software Engineer" OR "ML Engineer" OR "Data Engineer" energy OR renewable OR wind OR solar Copenhagen
+site:jobindex.dk "Software Engineer" OR "ML Engineer" OR "Data Scientist" healthcare OR hospital OR pharma OR biotech Copenhagen
+site:linkedin.com/jobs "Software Engineer" OR "Machine Learning Engineer" energy OR healthcare Denmark
 ```
 
 ### Priority 2: Computational Chemistry / Scientific ML
@@ -47,24 +57,55 @@ site:jobindex.dk "Applied Scientist" OR "Research Scientist" Python OR PyTorch C
 site:jobindex.dk "Machine Learning" chemistry OR materials OR "drug discovery" Copenhagen
 ```
 
-### Priority 4: Broader Technical / Consulting
+### Priority 4: Broader Technical Roles in Mission Sectors
 
-Wider net for general technical roles.
+Wider net, but still gated to green energy, healthcare, or scientific ML employers - not a
+general-IT catch-all.
 
 ```
-site:jobindex.dk Python developer Copenhagen
-site:linkedin.com/jobs "Python developer" OR "cloud engineer" Copenhagen
-site:jobindex.dk "technical consultant" Python OR cloud Copenhagen
+site:jobindex.dk Python developer energy OR renewable OR healthcare OR pharma Copenhagen
+site:linkedin.com/jobs "Python developer" OR "cloud engineer" energy OR healthcare Denmark
+site:jobindex.dk "cloud engineer" OR "DevOps" wind OR "energy transition" Copenhagen
 ```
+
+### Norway (arbeidsplassen.nav.no)
+
+Since Oslo is an equal-tier location, run the same sector-gated categories against
+`arbeidsplassen-search` with Norwegian-language keyword variants (its `--query` matches loosely,
+so English titles often work too):
+
+```
+arbeidsplassen-search: "software engineer" OR "data engineer" OR "maskinlæring" --county OSLO
+arbeidsplassen-search: "cheminformatics" OR "computational chemist" OR "molekylær" --county OSLO
+```
+
+Use `--county OSLO` (verified filter). If a role's location doesn't show as expected, fold the
+city into `--query` instead (e.g. `-q "utvikler bergen"`) per that skill's own notes.
 
 ## Location Filter
 
 When evaluating results, verify the job location is within reasonable commute distance from home, or in the accepted secondary city. Define acceptable areas:
 - Copenhagen and surrounding areas (ideal)
-- Oslo, Norway (acceptable - candidate is open to this location)
+- Oslo, Norway (ideal - candidate treats this as equal to Copenhagen)
 - Rest of Sjælland / Hovedstaden region (acceptable, longer commute)
 - Rest of Denmark or Norway outside these areas (borderline - discuss remote/relocation feasibility with candidate)
 - Outside Denmark/Norway, or roles requiring frequent international travel (too far / deal-breaker)
+
+## Sector Filter
+
+A software/ML/data-engineering role is only a match if the employer's core business is:
+- Green energy transition
+- Healthcare
+- Computational chemistry / scientific ML (cheminformatics, drug discovery, materials science, energy storage)
+
+Exclude regardless of tech-stack match:
+- Insurance sector
+- Pure IT sector: generic enterprise software, IT consulting/staffing/outsourcing, financial-IT,
+  or any software/ML role at a company with no tie to a sector above
+
+Computational chemistry / scientific ML roles (Priority 2 and 3) are always in scope - the sector
+gate above applies to general software/ML/data-engineering roles (Priority 1 and 4), not to
+domain-expertise roles.
 
 ## Date Filter
 
