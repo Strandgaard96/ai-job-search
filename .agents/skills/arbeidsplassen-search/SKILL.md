@@ -8,7 +8,7 @@ description: >
   Norwegian jobs, jobs in Norway, jobs in Oslo, arbeidsplassen, NAV jobs, ledige
   stillinger, jobbsøk, søk jobb, finn jobb, stillingsannonse, norske jobber.
 context: fork
-allowed-tools: Bash(bun run skills/arbeidsplassen-search/cli/src/cli.ts *)
+allowed-tools: Bash(bun run .agents/skills/arbeidsplassen-search/cli/src/cli.ts *)
 ---
 
 # Arbeidsplassen (NAV) Search Skill
@@ -31,7 +31,7 @@ warning is required here (contrast with `linkedin-search`, which does carry one)
 ### Search job listings
 
 ```bash
-bun run skills/arbeidsplassen-search/cli/src/cli.ts search [flags]
+bun run .agents/skills/arbeidsplassen-search/cli/src/cli.ts search [flags]
 ```
 
 Key flags:
@@ -48,7 +48,7 @@ Key flags:
 ### Fetch full job detail
 
 ```bash
-bun run skills/arbeidsplassen-search/cli/src/cli.ts detail <uuid|url> [--format json|plain]
+bun run .agents/skills/arbeidsplassen-search/cli/src/cli.ts detail <uuid|url> [--format json|plain]
 ```
 
 `uuid` is the job ID from `search` results, or pass a full `/stillinger/stilling/<uuid>` URL.
@@ -59,19 +59,19 @@ Returns the full description, employer, sector, employment type, position count,
 
 ```bash
 # Software engineer roles in Oslo
-bun run skills/arbeidsplassen-search/cli/src/cli.ts search -q "software engineer" --county OSLO --format table
+bun run .agents/skills/arbeidsplassen-search/cli/src/cli.ts search -q "software engineer" --county OSLO --format table
 
 # ML/data roles, last 14 days, any location
-bun run skills/arbeidsplassen-search/cli/src/cli.ts search -q "maskinlæring" --jobage 14 --format table
+bun run .agents/skills/arbeidsplassen-search/cli/src/cli.ts search -q "maskinlæring" --jobage 14 --format table
 
 # City folded into the query (reliable fallback when a county code is unverified)
-bun run skills/arbeidsplassen-search/cli/src/cli.ts search -q "data engineer bergen" --format table
+bun run .agents/skills/arbeidsplassen-search/cli/src/cli.ts search -q "data engineer bergen" --format table
 
 # Cloud/DevOps roles in Trondheim
-bun run skills/arbeidsplassen-search/cli/src/cli.ts search -q "cloud engineer trondheim" --format table
+bun run .agents/skills/arbeidsplassen-search/cli/src/cli.ts search -q "cloud engineer trondheim" --format table
 
 # Full detail for a specific job
-bun run skills/arbeidsplassen-search/cli/src/cli.ts detail 825d5dc5-c362-4d3c-8155-b36c6d6e016a --format plain
+bun run .agents/skills/arbeidsplassen-search/cli/src/cli.ts detail 825d5dc5-c362-4d3c-8155-b36c6d6e016a --format plain
 ```
 
 ## Output formats
