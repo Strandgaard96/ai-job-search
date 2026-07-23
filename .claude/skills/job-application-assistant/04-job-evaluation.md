@@ -59,8 +59,8 @@ Does work history align with what they're looking for?
 | 0-39 | Unrelated experience |
 
 **Strong:** Cloud/DevOps infrastructure engineering (Netcompany); computational chemistry, cheminformatics, and scientific ML research (PhD/postdoc, UCPH)
-**Moderate:** General software/ML engineering in industry (transferable from research ML + infra work, but limited non-research industry software tenure); full-stack web development (side-project level only)
-**Entry-level:** Formal engineering-management or team-lead titles; pure product/consulting roles without a technical core
+**Moderate:** General software/ML engineering in industry, but only at a company whose core business is green energy, healthcare, or scientific/chemistry ML (transferable from research ML + infra work, but limited non-research industry software tenure); full-stack web development (side-project level only)
+**Entry-level:** Formal engineering-management or team-lead titles; pure product/consulting roles without a technical core; software/ML roles at companies with no tie to a target mission sector (see Deal-breakers)
 
 ### 3. Behavioral/Culture Fit (0-100)
 Does the role and company culture match the behavioral profile?
@@ -75,10 +75,13 @@ Does the role and company culture match the behavioral profile?
 **Red flags to research:** Department disorganization, work dominated by maintenance over development, poor chemistry with leadership, culture mismatches. Check reviews, media coverage, LinkedIn connections, and network contacts for insider perspective.
 
 ### 4. Location & Logistics (Pass/Fail + Notes)
-- Within commute range: PASS
+- Within commute range (Copenhagen or Oslo, treated as equal): PASS
 - Remote with occasional office: PASS
-- Requires relocation: FAIL (deal-breaker)
+- Requires relocation outside Copenhagen/Oslo: FAIL (deal-breaker)
 - Frequent international travel: FLAG (discuss with user)
+- Insurance sector employer: FAIL (deal-breaker)
+- Pure IT sector employer (generic enterprise software, IT consulting/staffing/outsourcing,
+  financial-IT, or any software/ML role with no tie to a target mission sector): FAIL (deal-breaker)
 
 ### 5. Career Alignment & Motivation (0-100)
 Does this role advance career goals and contain tasks that energize?
