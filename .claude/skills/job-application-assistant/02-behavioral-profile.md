@@ -1,3 +1,7 @@
+---
+framework_version: 1.0.0
+---
+
 # Behavioral Profile
 
 <!-- No formal assessment (PI/DISC/Myers-Briggs) available. Built from self-assessment answers during /setup - review and refine as needed. -->

@@ -1,3 +1,7 @@
+---
+framework_version: 1.0.0
+---
+
 # Candidate Profile
 
 ## Identity
