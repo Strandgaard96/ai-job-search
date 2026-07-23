@@ -58,6 +58,7 @@ Kongens Lyngby, DK
 <!-- CV-YAML:PROJECTS:START -->
 - **Self-hosted Proxmox Homelab**: Deploy and maintain a self-hosted **Proxmox** server orchestrating multiple VMs and LXC containers for web and IT services on Linux, with provisioning and configuration **automated via Ansible and Terraform**.
 - **Full-stack AWS-hosted Web Application**: Engineered a **full-stack web application** — **React/TypeScript/Tailwind** frontend, **Python/FastAPI** backend — using AWS and Terraform knowledge to architect a near-zero-cost serverless AWS environment with Terraform and directing the implementation with Claude Code. Live at [games.drmaggi.com](https://games.drmaggi.com).
+- **Shopify E-Commerce Platform**: Built and self-administer a live **Shopify** e-commerce store end-to-end, providing ongoing IT support across the Shopify site and a companion **Wix** platform. Used **Claude Code** to build a custom Shopify integration that manages the full product catalog from version-controlled **YAML** files, syncing structured product data directly to the store.
 <!-- CV-YAML:PROJECTS:END -->
 
 ## Technical Skills
