@@ -62,9 +62,10 @@ cd .agents/skills/jobdanmark-search/cli && bun install && cd ../../../..
 cd .agents/skills/jobindex-search/cli && bun install && cd ../../../..
 cd .agents/skills/jobnet-search/cli && bun install && cd ../../../..
 cd .agents/skills/linkedin-search/cli && bun install && cd ../../../..
+cd .agents/skills/arbeidsplassen-search/cli && bun install && cd ../../../..
 ```
 
-For `linkedin-search` the install is optional: it has zero runtime dependencies and runs with plain `bun`; `bun install` only pulls TypeScript dev types.
+For `linkedin-search` and `arbeidsplassen-search` the install is optional: both have zero runtime dependencies and run with plain `bun`; `bun install` only pulls TypeScript dev types.
 
 ### 3. Set up your profile
 
@@ -144,7 +145,8 @@ ai-job-search/
 │   ├── jobdanmark-search/             # Jobdanmark.dk (Denmark)
 │   ├── jobindex-search/               # Jobindex.dk (Denmark)
 │   ├── jobnet-search/                 # Jobnet.dk (Denmark, government portal)
-│   └── linkedin-search/               # LinkedIn public job listings (country-agnostic)
+│   ├── linkedin-search/               # LinkedIn public job listings (country-agnostic)
+│   └── arbeidsplassen-search/         # Arbeidsplassen.nav.no (Norway, government portal)
 ├── cv/
 │   ├── cv.yaml                        # RenderCV master CV data (default renderer)
 │   ├── build.py                       # RenderCV -> Typst PDF build script
