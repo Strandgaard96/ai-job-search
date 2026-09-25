@@ -12,7 +12,7 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 
 ### Identity
 - **Name:** Magnus Strandgaard
-- **Location:** Copenhagen, Denmark or Oslo, Norway (treated as equal); not open to roles requiring frequent international travel
+- **Location:** Copenhagen, Denmark or Oslo, Norway (treated as equal, current base); Basel and Zurich, Switzerland are also in scope as relocation targets - rate them on fit as normal, but flag that they require relocation out of DK/NO. Not open to roles requiring frequent international travel
 - **Languages:** Danish (native), Norwegian (native), English (fluent), Spanish (basic)
 - **CV language:** English
 - **Status:** Employed (Linux Operations Engineer, Netcompany)

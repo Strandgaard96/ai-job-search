@@ -77,7 +77,8 @@ Does the role and company culture match the behavioral profile?
 ### 4. Location & Logistics (Pass/Fail + Notes)
 - Within commute range (Copenhagen or Oslo, treated as equal): PASS
 - Remote with occasional office: PASS
-- Requires relocation outside Copenhagen/Oslo: FAIL (deal-breaker)
+- Basel or Zurich, Switzerland: PASS, but FLAG the relocation out of DK/NO in the notes
+- Requires relocation outside Copenhagen/Oslo/Basel/Zurich: FAIL (deal-breaker)
 - Frequent international travel: FLAG (discuss with user)
 - Insurance sector employer: FAIL (deal-breaker)
 - Pure IT sector employer (generic enterprise software, IT consulting/staffing/outsourcing,
@@ -105,7 +106,7 @@ Does this role advance career goals and contain tasks that energize?
 
 **Life situation alignment:** Consider personal constraints:
 - **Security**: Currently employed (Netcompany) - can evaluate roles opportunistically rather than urgently. Target salary baseline: ~650,000 DKK/year
-- **Flexibility**: Based in Copenhagen, DK; open to Oslo, Norway as well. Not open to roles requiring frequent international travel
+- **Flexibility**: Based in Copenhagen, DK; open to Oslo, Norway as an equal. Basel and Zurich, Switzerland are in scope as relocation targets. Not open to roles requiring frequent international travel
 - **Professional development**: Prioritizing industry roles that let scientific/ML skills mature to production scale alongside software engineering craft
 
 ### 6. Salary Benchmark (Optional)

@@ -16,7 +16,7 @@ framework_version: 1.0.0
 <!-- CV-YAML:IDENTITY:END -->
 - **Languages:** Danish (native), Norwegian (native), English (fluent), Spanish (basic)
 - **Status:** Employed (Linux Operations Engineer, Netcompany, 2025-present)
-- **Constraints:** Copenhagen, DK or Oslo, Norway (treated as equal); not open to roles requiring frequent international travel
+- **Constraints:** Copenhagen, DK or Oslo, Norway (treated as equal, current base); Basel and Zurich, Switzerland in scope as relocation targets; not open to roles requiring frequent international travel
 
 ## Education
 

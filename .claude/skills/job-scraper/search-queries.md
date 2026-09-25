@@ -19,6 +19,11 @@ Primary (your market's job boards - scaffold one with `/add-portal`):
 Primary (Norwegian job market - Oslo is an equal-tier location, see Location Filter):
 - **arbeidsplassen.nav.no** - NAV's official Norwegian public job bank (`arbeidsplassen-search` CLI)
 
+Primary (Swiss job market - Basel and Zurich are in-scope relocation targets, see Location Filter):
+- No dedicated CLI; covered by `linkedin-search` (`-l "Basel, Switzerland"` / `-l "Zurich, Switzerland"`) and
+  `freehire-search` (`--country CH`). Basel is the pharma / drug-discovery hub, so Priority 2 queries
+  (computational chemistry, cheminformatics, CADD) hit hardest there.
+
 Secondary (company career pages via Google):
 - Direct Google searches with `site:` filters for known target companies
 
@@ -93,8 +98,9 @@ When evaluating results, verify the job location is within reasonable commute di
 - Copenhagen and surrounding areas (ideal)
 - Oslo, Norway (ideal - candidate treats this as equal to Copenhagen)
 - Rest of Sjælland / Hovedstaden region (acceptable, longer commute)
+- Basel and Zurich, Switzerland (in scope as relocation targets - score fit normally, flag the relocation)
 - Rest of Denmark or Norway outside these areas (borderline - discuss remote/relocation feasibility with candidate)
-- Outside Denmark/Norway, or roles requiring frequent international travel (too far / deal-breaker)
+- Elsewhere outside Denmark/Norway/Switzerland, or roles requiring frequent international travel (too far / deal-breaker)
 
 ## Sector Filter
 
