@@ -72,7 +72,7 @@ employer's core business sits in one of these mission sectors - the tech stack a
   software/ML role at a company with no tie to a target mission sector above
 
 ## Repo Structure
-- `cv/` - CV data and templates: `cv.yaml` + `build.py` (RenderCV, default) and moderncv LaTeX variants (opt-in only, see `05-cv-templates.md`)
+- `cv/` - **symlink to the private CV repo `../CV`** (github.com/Strandgaard96/CV, gitignored here). CV data and templates: `cv.yaml` + `build.py` (RenderCV, default) and moderncv LaTeX variants (opt-in only, see `05-cv-templates.md`). Also builds and deploys the strandgaard.dev CV site (`build.py site` → `cv/public/`, `npx wrangler deploy`). Commit CV changes (cv.yaml, overrides) in that repo, not this one
 - `cover_letters/` - LaTeX cover letters (custom cover.cls template)
 - `.claude/skills/` - AI skill definitions for the application workflow
 - `.agents/skills/` - Job search CLI tools

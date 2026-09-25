@@ -52,6 +52,22 @@ under the Legacy section below for the full checklist — it is unchanged, just 
 `cv.yaml`'s `photo:` field points at `cv_image.jpeg`. `build.py` automatically applies a circular
 crop via a Typst post-processing patch — no manual step needed.
 
+### Personal site (strandgaard.dev)
+
+`cv.yaml` also feeds the Cloudflare-hosted CV site. Everything on the site (summary, experience,
+projects, links, location) is derived from the `cv:` block; the only site-only field is
+`web.role` (hero subtitle), stripped before RenderCV sees the data. Overrides never touch the
+site - it always renders the master `cv.yaml`.
+
+```bash
+cd cv && uv run python build.py site   # public/index.html + canonical public/cv.pdf
+cd cv && npx wrangler dev              # preview at localhost:8787
+cd cv && npx wrangler deploy           # publish
+```
+
+Never edit `public/index.html` directly - it is generated from `templates/index.html.j2`.
+`public/` is gitignored build output.
+
 ## Page Budget - Hard 2-Page Limit
 
 The CV **must** fit on exactly 2 pages when compiled. Use these content limits as a guide:
